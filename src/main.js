@@ -5,9 +5,17 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar, faCodeFork } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import moment from 'moment'
+
 library.add(faStar, faCodeFork)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('MM/DD/YYYY')
+  }
+})
 
 Vue.config.productionTip = false
 

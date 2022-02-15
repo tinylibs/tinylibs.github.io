@@ -3,7 +3,7 @@
     <h3>{{ commitName }}</h3>
     <p>{{ committerUN }}</p>
     <p>{{ commitHash }}</p>
-    <p>Created: {{ dateCreated }}</p>
+    <p>Created: {{ dateCreated | formatDate}}</p>
   </article>
 </template>
 
@@ -14,12 +14,13 @@ export default {
     commitName: String,
     committerUN: String,
     commitHash: String,
-    dateCreated: Date,
+    dateCreated: String,
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+article {
+  border-bottom: 1px solid #000;
+}
 </style>

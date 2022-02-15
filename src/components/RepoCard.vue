@@ -1,9 +1,10 @@
 <template>
-  <article @click="$emit('selected')">
+  <article @click="$emit('selected', repoName)">
     <h2>{{ repoName }}</h2>
     <p>{{ repoDescription }}</p>
+    <p>{{ language }}</p>
     <p><font-awesome-icon icon="fa-solid fa-star" /> {{ starCount }} <font-awesome-icon icon="fa-solid fa-code-fork" /> {{ forkCount }}</p>
-    <p>Created: {{ dateCreated }}</p>
+    <p>Created: {{ dateCreated | formatDate }}</p>
   </article>
 </template>
 
@@ -13,14 +14,18 @@ export default {
   props: {
     repoName: String,
     repoDescription: String,
+    language: String,
     starCount: Number,
     forkCount: Number,
-    dateCreated: Date,
+    dateCreated: String,
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  article {
+    border: 1px solid #000;
+    width: 30vw;
+    cursor: pointer;
+  }
 </style>
