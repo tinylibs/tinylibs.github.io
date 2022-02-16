@@ -1,5 +1,5 @@
 <template>
-  <article @click="$emit('selected', repoName)">
+  <article :class="$props.classStyle ? 'list' : 'card'" @click="$emit('selected', repoName)">
     <h2>{{ repoName }}</h2>
     <p>{{ repoDescription }}</p>
     <p>{{ language }}</p>
@@ -12,18 +12,19 @@
 export default {
   name: 'RepoCard',
   props: {
+    classStyle: Boolean,
     repoName: String,
     repoDescription: String,
     language: String,
     starCount: Number,
     forkCount: Number,
     dateCreated: String,
-  }
+  },
 }
 </script>
 
 <style scoped>
-  article {
+  article.card {
     border: 1px solid #d0d0d0;
     background-color: #fff;
     cursor: pointer;
@@ -46,5 +47,11 @@ export default {
   span {
     display: inline-block;
     margin-right: 2em;
+  }
+
+  /* styles for list class */
+  article.list {
+    border-bottom: 1px solid #d0d0d0;
+    text-align: left;
   }
 </style>

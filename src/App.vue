@@ -6,19 +6,23 @@
         <input type="text" placeholder="Company name" id="company" v-model="company" name="company" v-on:keydown.enter.prevent="getRepos(company)" />
       <button @click='getRepos(company)'>New Search</button>
     </header>
-    <label for="sort-options" id="sort-options-label">Sort by: 
-      <select 
-        name="sort-options" 
-        id="sort-options"
-        v-model="sortOn">
-        <option value="starCount">Most stars</option><option value="dateCreated">Most recent</option>
-        <option value="name">Alphabetical</option>
-        <option value="forkCount">Most forks</option>
-        <option value="language">Language</option>
-      </select>
-    </label>
-    <main v-if="initialLoaded">
+    <div class="user-options">
+      <span @click="toggleListView()"><font-awesome-icon icon="fa-solid fa-list" :class="isList ? 'list-icon-color' : ''"/><font-awesome-icon icon="fa-solid fa-border-all" :class="isList ? '' : 'list-icon-color'"/></span>
+      <label for="sort-options" id="sort-options-label">Sort by: 
+        <select 
+          name="sort-options" 
+          id="sort-options"
+          v-model="sortOn">
+          <option value="starCount">Most stars</option><option value="dateCreated">Most recent</option>
+          <option value="name">Alphabetical</option>
+          <option value="forkCount">Most forks</option>
+          <option value="language">Language</option>
+        </select>
+      </label>
+    </div>
+    <main v-if="initialLoaded" :class="isList ? 'list' : ''">
         <RepoCard v-for="repo in sortedArray" :key="repo.name"
+          :classStyle=isList
           :repoName=repo.name
           :repoDescription=repo.description
           :language=repo.language
@@ -67,6 +71,7 @@ export default {
       company: '',
       currentCompany: '',
       show: false,
+      isList: true,
       initialLoaded: false,
       commitsLoaded: true,
       pagesLoaded: true,
@@ -109,9 +114,15 @@ export default {
     },
     morePagesAvailable: function() {
       return this.repoInfo.length == (30 * this.page)
+    },
+    class: function() {
+      return this.isList
     }
   },
   methods: {
+    toggleListView() {
+      return this.isList = !this.isList;
+    },
     showCommits(name) {
       if (this.commits.length == 0) {
         this.currentRepo = name;
@@ -202,27 +213,6 @@ export default {
   color: #2c3e50;
 }
 
-main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-flow: row;
-  grid-gap: 1.5rem;
-  margin: 1rem;
-}
-
-.loader {
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-}
-
-#sort-options-label {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  margin: 0.5rem 2rem;
-}
-
 header {
   margin: 0rem auto 2rem auto;
   background-image: linear-gradient(to bottom right, var(--main-color), var(--main-color), #fff, #fff, #fff)
@@ -259,6 +249,49 @@ header button:hover {
 
 input:focus {
   font-size: 1.1em;   
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: row;
+  grid-gap: 1.5rem;
+  margin: 1rem;
+}
+
+.loader {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
+.user-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem 2rem;
+}
+
+.user-options > span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 2vw;
+  cursor: pointer;
+}
+
+.user-options > span > * {
+  margin: 0 0.5rem;
+}
+
+/* Styles for switching between list and grid views */
+.list-icon-color {
+  color: var(--main-color);
+}
+
+main.list {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Make slide in box hidden off screen with fixed positioning 100% to the right */
@@ -333,6 +366,10 @@ h2 {
 
 
 @media screen and (max-width: 767px) {
+  header label {
+    width: 80vw;
+  }
+  
   main {
     grid-template-columns: auto;
   }
