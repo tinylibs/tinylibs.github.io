@@ -2,12 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStar, faCodeFork } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faCodeFork, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import moment from 'moment'
 
-library.add(faStar, faCodeFork)
+library.add(faStar, faCodeFork, faSpinner)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

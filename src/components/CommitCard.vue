@@ -1,7 +1,7 @@
 <template>
   <article>
     <h3>{{ commitName }}</h3>
-    <p>{{ committerUN }}</p>
+    <p>Committer: {{ committerUN }}</p>
     <p>{{ commitHash }}</p>
     <p>Created: {{ dateCreated | formatDate}}</p>
   </article>
@@ -22,5 +22,19 @@ export default {
 <style scoped>
 article {
   border-bottom: 1px solid #000;
+  max-width: 90vw;
+  margin: 0 auto;
+  text-align: left;
+  overflow-wrap: break-word;
 }
+
+h3 {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+p:last-of-type {
+  font-weight: bold;
+}
+
 </style>
