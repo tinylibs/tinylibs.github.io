@@ -1,57 +1,55 @@
 <template>
-  <article :class="$props.classStyle ? 'list' : 'card'" @click="$emit('selected', repoName)">
-    <h2>{{ repoName }}</h2>
-    <p>{{ repoDescription }}</p>
-    <p>{{ language }}</p>
-    <span><font-awesome-icon icon="fa-solid fa-star" /> {{ starCount }}</span><span> <font-awesome-icon icon="fa-solid fa-code-fork" /> {{ forkCount }}</span>
-    <p>Created: {{ dateCreated | formatDate }}</p>
-  </article>
+  <a :href="url">
+    <article>
+      <h2>{{ name }}</h2>
+      <p>{{ description }}</p>
+      <span>⭐ {{ stars }}</span>
+    </article>
+  </a>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: 'RepoCard',
   props: {
-    classStyle: Boolean,
-    repoName: String,
-    repoDescription: String,
-    language: String,
-    starCount: Number,
-    forkCount: Number,
-    dateCreated: String,
+    repo: String,
+    name: String,
+    description: String,
+    stars: Number,
   },
-}
+  computed: {
+    url() {
+      return `https://github.com/${this.repo}`;
+    },
+  },
+};
 </script>
 
 <style scoped>
-  article.card {
-    border: 1px solid #d0d0d0;
-    background-color: #fff;
-    cursor: pointer;
-    overflow: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 20px 1px #d0d0d0;
-    text-align: left;
-    padding: 1rem;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
-
-  p:first-of-type, p:last-of-type {
-    font-weight: bold;
-    overflow-wrap: break-word;
-  }
-
-  span {
-    display: inline-block;
-    margin-right: 2em;
-  }
-
-  /* styles for list class */
-  article.list {
-    border-bottom: 1px solid #d0d0d0;
-    text-align: left;
-  }
+article {
+  position: relative;
+  padding: 1.25rem;
+  border: 1px dashed ButtonBorder;
+  transition: background var(--easing), color var(--easing);
+}
+article:hover {
+  background-color: ButtonFace;
+  color: ButtonText;
+}
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+p {
+  margin-top: 0.5rem;
+}
+span {
+  position: absolute;
+  display: flex;
+  right: 20px;
+  top: 20px;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  padding: 4px;
+}
 </style>

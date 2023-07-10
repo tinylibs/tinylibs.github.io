@@ -1,14 +1,18 @@
-# Github Repository List
+# Vue 3 + TypeScript + Vite
 
-This build utilizes GitHub's API to grab a list of repositories, and then from there a list of commits from each of the repositories. 
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-Demo can be accessed [on aws](http://github-repository-app.s3-website-us-east-1.amazonaws.com/).
+## Recommended IDE Setup
 
-## Features 
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-* List view of the 30 most recent repositories from the company (Netflix is the default) with repository name, description, language used, how many stars and forks, and the created date
-* 'See more' button to load another 30 using the pagination option of the API
-* Input a new company name to see their repositories
-* Click on a single repository information and see a list of commits with the commit message, who made the commit, the commit hash, and created date
-* List is automatically sorted by most stars, but can be changed to view most forks, language, alphabetical by name, and most recent
-* Can switch between list and tile layouts based on user preference 
+## Type Support For `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+
+1. Disable the built-in TypeScript Extension
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
