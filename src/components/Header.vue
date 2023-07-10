@@ -1,12 +1,12 @@
 <template>
   <header>
-    <a href="/"><img class="logo" src="logo.png" alt="Logo" /></a>
+    <a href="/"><img class="logo" src="/logo.png" alt="Logo" /></a>
     <div class="title-block">
       <h1><a href="/">Tinylibs</a></h1>
       <p>
         <span>A place for tiny and minimal libraries</span>
         <a href="https://github.com/tinylibs"
-          ><img class="github" src="github.svg"
+          ><img class="github" src="/github.svg"
         /></a>
       </p>
     </div>

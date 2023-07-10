@@ -9,9 +9,9 @@
       :stars="repo.stars"
     />
   </main>
-  <main v-else class="loader">
+  <div v-else class="loader">
     <Loader />
-  </main>
+  </div>
 </template>
 
 <script lang="ts">

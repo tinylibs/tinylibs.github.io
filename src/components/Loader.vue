@@ -1,37 +1,56 @@
-<!-- https://loading.io/css/ -->
-
 <template>
-  <div class="lds-circle"><div></div></div>
+  <div class="center">
+    <!-- https://loading.io/css/ -->
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.lds-circle {
+/* https://loading.io/css/ */
+.lds-ring {
   display: inline-block;
-  transform: translateZ(1px);
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
-.lds-circle > div {
-  display: inline-block;
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
   width: 64px;
   height: 64px;
   margin: 8px;
+  border: 8px solid currentColor;
   border-radius: 50%;
-  background: #fff;
-  animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
 }
-@keyframes lds-circle {
-  0%,
-  100% {
-    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
-  }
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
   0% {
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: rotateY(1800deg);
-    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotateY(3600deg);
+    transform: rotate(360deg);
   }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
